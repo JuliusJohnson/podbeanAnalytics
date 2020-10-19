@@ -25,7 +25,3 @@ def uploadData():
     # with open('top_podcast_2020-08-28.csv', 'r') as file_obj:
     #     content = file_obj.read()
     #     client.import_csv(spreadsheet.id, data=content)
-
-    for file in filtered_files:
-        path_to_file = os.path.join("./google_sheets_top",file)
-        os.remove(path_to_file)

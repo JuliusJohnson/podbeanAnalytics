@@ -1,33 +1,33 @@
 #Gets Top "X" Podcast
 import requests, json, os, pprint, csv
 from datetime import datetime
-import api_info #local imports
+import headers #local import
 
-def downloadTopPodcast():
+def downloadTopPodcast(accesstoken):
     #get podbean credentials:
-    with open("accesstoken2.json", "r") as f:
-        accessToken = json.load(f)['podbean_cred']['accesstoken']#accessToken stored in seperate file
+    #with open("accesstoken2.json", "r") as f:
+    #    accessToken = json.load(f)['podbean_cred']['accesstoken']#accessToken stored in seperate file
 
     #Get Current Date and Time
     now = datetime.today().strftime("%Y-%m-%d")
 
     #Header Information
-    headers = api_info.headers #A seperate file that contains header information
+    head = headers.headers #A seperate file that contains header information
 
     #API Parameters
     params = [
     ['slug', 'thepathchurch'],
-    ['access-token', accessToken],
-    ['start', '2016-12-01'],
-    ['end', now],
+    ['access-token', str(accesstoken)],
+    ['start', '2020-09-13'], #edit
+    ['end', '2020-10-12'], #edit dynamic
     ['period', 'd'],
     ['limit', '50'],
-    ['t', '5f470e39'],
-    ['s', 'd4qxaIsQkcRBWkPiEXiS10kgWL8='],
+    ['t', '5f83c0af'],
+    ['s', 'WJkBFKR/M2QkSQJkTJCB1eWfND4=']
     ]
 
     #Call the API
-    response = requests.get('https://api-v2.podbean.com/admin/stats/top-download-episodes', headers=headers, params=params)
+    response = requests.get('https://api-v2.podbean.com/admin/stats/top-download-episodes', headers=head, params=params)
     jsonResponse = response.json()['data']
 
     #opens file for writing
@@ -55,4 +55,3 @@ def downloadTopPodcast():
         #Writing data of CSV file
         csv_writier.writerow(podcast.values())
     top_podcast_file.close()
-
