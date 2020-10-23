@@ -19,10 +19,10 @@ import re, time, json, os
 
 def token_get_data():
     
-    with open("/home/julius/Documents/programming/python/projects/Podbean Analytics/credentials.json", "r") as f: # login credentials stored in seperate file
+    with open("/home/julius/Documents/programming/python/projects/Podbean_Analytics/credentials.json", "r") as f: # login credentials stored in seperate file
         credentials = (json.load(f)['podbean_cred'])
     #Starts Server
-    server = Server("/home/julius/Documents/programming/python/projects/Podbean Analytics/browsermob-proxy-2.1.4-bin/browsermob-proxy-2.1.4/bin/browsermob-proxy")
+    server = Server("/home/julius/Documents/programming/python/projects/Podbean_Analytics/browsermob-proxy-2.1.4-bin/browsermob-proxy-2.1.4/bin/browsermob-proxy")
     server.start()
     time.sleep(1)
     proxy = server.create_proxy()

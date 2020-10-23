@@ -6,7 +6,7 @@ def uploadData():
     scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
             "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope) #need to create client secret.json from Google API Services page
+    credentials = ServiceAccountCredentials.from_json_keyfile_name('/home/julius/Documents/programming/python/projects/Podbean_Analytics/client_secret.json', scope) #need to create client secret.json from Google API Services page
     client = gspread.authorize(credentials)
 
     files = os.listdir('google_sheets_top')

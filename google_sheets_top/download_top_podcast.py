@@ -18,8 +18,8 @@ def downloadTopPodcast(accesstoken):
     params = [
     ['slug', 'thepathchurch'],
     ['access-token', str(accesstoken)],
-    ['start', '2020-09-13'], #edit
-    ['end', '2020-10-12'], #edit dynamic
+    ['start', '2016-12-01'], 
+    ['end', now], 
     ['period', 'd'],
     ['limit', '50'],
     ['t', '5f83c0af'],
