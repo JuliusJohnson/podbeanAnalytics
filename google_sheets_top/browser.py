@@ -52,6 +52,8 @@ def token_get_data():
     token = (matches.groups()[0])
 
     download_top_podcast.downloadTopPodcast(token) #downlaods data from podbean API and puts into Spreadsheet
+    download_top_podcast.processdata()#process data, currently only adds the rank for easier analytics
     #time.sleep(90)#The website must stay loaded for the duration of the python excution. A new Access Token is generated at time of login.
+    #stops procymob
     server.stop()
     driver.quit()

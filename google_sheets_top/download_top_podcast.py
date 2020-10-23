@@ -1,5 +1,5 @@
 #Gets Top "X" Podcast
-import requests, json, os, pprint, csv
+import requests, json, os, pprint, csv, pandas as pd
 from datetime import datetime
 import headers #local import
 
@@ -31,11 +31,11 @@ def downloadTopPodcast(accesstoken):
     jsonResponse = response.json()['data']
 
     #opens file for writing
-    top_podcast_file = open(f'google_sheets_top/top_podcast_{now}.csv', 'w')
+    top_podcast_file = open(f'/home/julius/Documents/programming/python/projects/Podbean_Analytics/google_sheets_top/top_podcast_{now}.csv', 'w')
     #create the csv writer object
     csv_writier = csv.writer(top_podcast_file)
 
-    #edit the json outpus as a list of dictionaries 
+    #edit the json outputs as a list of dictionaries 
     #print(type(jsonResponse)) -- for debugging
     for podcast in jsonResponse:
         podcast.update({'datePulled' : str(now)}) #adds datetime the data was pulled from the API
@@ -55,3 +55,10 @@ def downloadTopPodcast(accesstoken):
         #Writing data of CSV file
         csv_writier.writerow(podcast.values())
     top_podcast_file.close()
+
+
+def processdata():
+    now = datetime.today().strftime("%Y-%m-%d") 
+    data = pd.read_csv(f'/home/julius/Documents/programming/python/projects/Podbean_Analytics/google_sheets_top/top_podcast_{now}.csv')#opens the csv file
+    data['rank'] = data['total'].rank(method = 'min', ascending=False) # adds rank based on the total number of downloads 
+    data.to_csv(f'/home/julius/Documents/programming/python/projects/Podbean_Analytics/google_sheets_top/top_podcast_{now}.csv',index=False) #saves data
