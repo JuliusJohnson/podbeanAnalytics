@@ -4,9 +4,6 @@ from datetime import datetime
 import headers #local import
 
 def downloadTopPodcast(accesstoken):
-    #get podbean credentials:
-    #with open("accesstoken2.json", "r") as f:
-    #    accessToken = json.load(f)['podbean_cred']['accesstoken']#accessToken stored in seperate file
 
     #Get Current Date and Time
     now = datetime.today().strftime("%Y-%m-%d")
