@@ -1,4 +1,4 @@
-# podbeanAnalytics
+# Automation for Podbean Podcast Analytics
 Scripts to Automate data pulling from Podbean
 
 
